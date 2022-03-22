@@ -7,7 +7,7 @@ const CustomSDK = () => {
   
   
     const config = {
-      token: {accessToken}
+      token: accessToken
     };
     
     const options = {
@@ -17,22 +17,13 @@ const CustomSDK = () => {
   
     const platformSDK = new PlatformSDK(config, options)
     console.log(platformSDK)
-    const loc = {
-      selector: '.Wrapper'
-    }
-  
-    const builderOption = {
-      includeDevProduct: false,
-      isTemporary: false
-    }
-    const BuilderController = platformSDK.createProduct(loc, builderOption)
+    
 
    
   return (
     <>
       <CustomSDKUI
-      accessToken = {accessToken}
-      BuilderController = {BuilderController}/>
+      platformSDK = {platformSDK}/>
     </>
   )
 }
