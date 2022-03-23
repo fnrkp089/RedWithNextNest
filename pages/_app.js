@@ -35,6 +35,8 @@ function MyApp({ Component, pageProps }) {
           setAccessToken(localStorage.getItem('accessToken'));
           setRefreshToken(localStorage.getItem('refreshToken'));
           console.log(`토큰: ${accessToken} 리프레시토큰 : ${refreshToken}`)
+
+          
         } catch(err) {
           console.log("Error >>", err);
         };

@@ -4,8 +4,8 @@ import CustomListUI from './Custom.presenter';
 
 
 const CustomList = () => {
-  const [customData, setCustomData] = useState('');
-  const [loading, isLoading] = useState(false);
+  const [customData, setCustomData] = useState({});
+  const [isKey, setIsKey] = useState('');
   const router = useRouter();
 
   const toCustomPage = (id) => {
@@ -15,20 +15,20 @@ const CustomList = () => {
   }
 }
 useEffect(() => {
-  const fetched = fetch('/api/customMethod', {
+    fetch('/api/customMethod', {
     method: 'GET'
     })
     .then(response => response.json())
     .then((data) => {
       setCustomData(data)
-      isLoading(true)
+      console.log(data)
+      console.log(customData)
     }) 
       
 },[])
   return(
     <CustomListUI
     toCustomPage = {toCustomPage}
-    loading = {loading}
     customData = {customData}/>
   )
 }

@@ -3,15 +3,13 @@ import styled from '@emotion/styled'
 export const MiddleContainer = styled.div`
   display:flex;
   flex-direction: column;
-  justify-content:center;
-  align-items:center;
   margin-top: 40px;
 `
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  max-width:1200px;
+  max-width:400px;
   width: 100%;
   height: 100%;
 `
@@ -31,9 +29,9 @@ export const CustomHeader = styled.div`
 
 export const CustomContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
-  width: 600px;
+  width: 300px
   height: auto;
   margin-top: 40px;
   border: 1px solid black;

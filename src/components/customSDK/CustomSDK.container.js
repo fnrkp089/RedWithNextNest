@@ -6,6 +6,7 @@ import axios from 'axios'
 const CustomSDK = () => {
   let customSaveButton;
   let customInfo = {} ; 
+  const router = useRouter()
   const {accessToken, setAccessToken, refreshToken,setRefreshToken} = useContext(GlobalContext);
   const [flag, setFlag] = useState(false);
   
@@ -47,7 +48,8 @@ const CustomSDK = () => {
         },
       })
         .then(response => response.json())
-        .then(data => console.log(data)) 
+        .then(data => console.log(data))
+        router.push(`/customList`);
     }
   }
 

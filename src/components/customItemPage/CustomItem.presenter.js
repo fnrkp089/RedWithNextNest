@@ -7,16 +7,10 @@ const CustomItemUI = () => {
   return(
     <MiddleContainer>
        <CustomHeader>
-          커스텀 상품을 생성합니다
+          상품을 주문합니다
         </CustomHeader>
       <Wrapper>
-        <CustomContentWrapper>
-          <CustomContentContainer>박스</CustomContentContainer>
-        </CustomContentWrapper>
-        
-        <CustomContentWrapper>
-          123
-        </CustomContentWrapper>
+        <CustomContentWrapper id='platform-product-area'/>
       </Wrapper>
     </MiddleContainer>
   )
