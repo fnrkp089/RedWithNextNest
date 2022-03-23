@@ -1,10 +1,11 @@
 import {useRouter} from 'next/router';
-import {useState, useRef} from 'react'
-import CustomWriteUI from './Custom.presenter';
+import {useState, useRef, useEffect} from 'react'
+import CustomListUI from './Custom.presenter';
 
 
-const CustomWrite = () => {
-  const [isKey, setIsKey] = useState('');
+const CustomList = () => {
+  const [customData, setCustomData] = useState('');
+  const [loading, isLoading] = useState(false);
   const router = useRouter();
 
   const toCustomPage = (id) => {
@@ -13,12 +14,22 @@ const CustomWrite = () => {
       router.push(`../customPage/${id}`);
   }
 }
-
-  const customItemList = []
+useEffect(() => {
+  const fetched = fetch('/api/customMethod', {
+    method: 'GET'
+    })
+    .then(response => response.json())
+    .then((data) => {
+      setCustomData(data)
+      isLoading(true)
+    }) 
+      
+},[])
   return(
-    <CustomWriteUI
+    <CustomListUI
     toCustomPage = {toCustomPage}
-    />
+    loading = {loading}
+    customData = {customData}/>
   )
 }
-export default CustomWrite;
+export default CustomList;

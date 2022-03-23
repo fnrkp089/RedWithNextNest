@@ -1,24 +1,17 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { MiddleContainer, Wrapper } from './CustomSDK.styled'
+import { MiddleContainer, Wrapper, ButtonWrapper, SubmitButton } from './CustomSDK.styled'
 import { useEffect } from 'react';
 
-const CustomSDKUI = ({platformSDK}) => {
-  const platformCreate= platformSDK;
-  const loc = {
-    selector: '#custom-product-area'
-  }
-
-  const builderOption = {
-    includeDevProduct: false,
-    isTemporary: false
-  }
-  const BuilderController = platformCreate.createProduct(loc, builderOption)
+const CustomSDKUI = ({customSave}) => {
   
   return (
     <>
     <MiddleContainer>
       <Wrapper>
-      <div id= 'custom-product-area'></div>
+        <ButtonWrapper>
+          <SubmitButton onClick={customSave}>커스텀저장</SubmitButton>
+        </ButtonWrapper>
+      <div id= 'custom-product-area'/>
       </Wrapper>
     </MiddleContainer>
     </>

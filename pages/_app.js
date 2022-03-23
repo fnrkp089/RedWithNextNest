@@ -5,11 +5,11 @@ import axios from 'axios';
 import Head from "next/head";
 import Script from 'next/script'
 
-export const GlobalContext = createContext({
-  accessToken: '',
-  setAccessToken: () => {},
+export const GlobalContext = createContext({//관리할 State 들을 객체 형태로 
+  accessToken : '',
+  setAccessToken : () => {},
   refreshToken : '',
-  setRefreshToken: () => {}
+  setRefreshToken : () => {}
 })
 
 function MyApp({ Component, pageProps }) {
@@ -18,7 +18,11 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     //토큰 존재시
-    if(accessToken) return;
+    if(localStorage.getItem('accessToken')){
+      return;
+    }
+    
+    //토큰 없을 경우 발급
       const getToken = async () => {
         try{
           const response = await axios.post(process.env.TOKENAUTH, {}, {
@@ -26,19 +30,21 @@ function MyApp({ Component, pageProps }) {
               'Authorization' : process.env.SERVER
             }
           })
-          setAccessToken(response.data.result.token);
-          setRefreshToken(response.data.result.refreshToken);
+          localStorage.setItem('accessToken', response.data.result.token)
+          localStorage.setItem('refreshToken', response.data.result.refreshToken);
+          setAccessToken(localStorage.getItem('accessToken'));
+          setRefreshToken(localStorage.getItem('refreshToken'));
           console.log(`토큰: ${accessToken} 리프레시토큰 : ${refreshToken}`)
         } catch(err) {
           console.log("Error >>", err);
         };
       };
       getToken();
-  }, [])
+  }, []);
   return ( 
     <>
-        <Script src="https://platform-cdn.redprinting.co.kr/sdk/RedPlatformSDK.min.js" strategy="beforeInteractive"/>
-        <GlobalContext.Provider value={{accessToken, setAccessToken, refreshToken, setRefreshToken}}>
+       <GlobalContext.Provider value={{accessToken, setAccessToken, refreshToken, setRefreshToken}}>
+        <Script src="https://platform-cdn.redprinting.co.kr/sdk/RedPlatformSDK.min.js"/>
         <Layout>
           <Component {...pageProps} />
         </Layout>

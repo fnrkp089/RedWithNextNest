@@ -6,7 +6,8 @@ const nextConfig = {
     TOKENAUTH: process.env.TOKENAUTH,
     SERVER: process.env.SERVER,
     INTIAL: process.env.INTIAL,
-    PLATFORM: process.env.PLATFORM 
+    PLATFORM: process.env.PLATFORM,
+    MONGODB_URI: process.env.MONGODB_URI 
   }
 }
 

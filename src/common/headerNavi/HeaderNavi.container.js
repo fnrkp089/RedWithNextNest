@@ -5,19 +5,19 @@ const HeaderNavi = () => {
   const router = useRouter();
 
   const handleCustom= () => {
-    router.push(`/custom`);
+    router.push('/custom');
   }
 
   const handleGoodsList = () => {
-    router.push(`/goodsList`);
+    router.push('/customList');
   }
   
   const handleFavorite = () => {
-    router.push('/favorite')
+    router.push('/favorite');
   }
 
   const handleOrder = () => {
-    router.push('/order')
+    router.push('/order');
   }
   return(
     <HeaderNaviUI
