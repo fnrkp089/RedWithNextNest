@@ -6,6 +6,7 @@ import CustomItemUI from './CustomItem.presenter';
 const CustomItem = () => {
   const router = useRouter();
   const itemName = router.query.id
+  const proCode = itemName.split('.');
   const [isKey, setIsKey] = useState('');
 
   const config = {
@@ -21,13 +22,13 @@ const CustomItem = () => {
   useEffect(() => {
     const widget = async() => {
       const config = {
-        productCode: "MEPKDFT",
+        productCode: proCode[1],
         selector: '#platform-product-area'
       }
       
       const options = {
         isTemporary: false,
-        customKey: router.query.id
+        customKey: itemName
       }
       const widgetController = await platformSDK.createWidget(config, options)
     }

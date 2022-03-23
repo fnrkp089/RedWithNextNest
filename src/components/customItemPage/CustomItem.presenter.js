@@ -1,5 +1,5 @@
 import {MiddleContainer, Wrapper, CustomHeader, CustomContentWrapper,
-  CustomContentContainer} from './CustomItem.styled'
+  CustomContentContainer, SubmitButton} from './CustomItem.styled'
 
 
 const CustomItemUI = () => {
@@ -9,9 +9,11 @@ const CustomItemUI = () => {
        <CustomHeader>
           상품을 주문합니다
         </CustomHeader>
-      <Wrapper>
-        <CustomContentWrapper id='platform-product-area'/>
+      <Wrapper id='platform-product-area'>
+        
+       
       </Wrapper>
+      <SubmitButton>주문하기</SubmitButton>
     </MiddleContainer>
   )
 }
