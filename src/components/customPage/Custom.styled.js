@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   max-width:1200px;
   width: 100%;
-  height: 340px;
+  height: auto;
 `
 
 export const BestHeader = styled.div`

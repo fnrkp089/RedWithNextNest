@@ -19,6 +19,7 @@ const CustomSDK = () => {
     isDev: true, // default: false
     initializeTargetUrl: process.env.INTIAL // default: <운영> WebApp 
   }
+  
   const platformSDK = new PlatformSDK(config, options);
    
   useEffect(() => {

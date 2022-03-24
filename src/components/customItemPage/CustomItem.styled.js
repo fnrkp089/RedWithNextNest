@@ -58,3 +58,23 @@ export const SubmitButton = styled.button`
     margin-right: 12px;
     cursor: pointer;
 `
+
+export const HeaderNamePlace = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:749px;
+  height:70px;
+`
+export const HeaderNamePlace_Name = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  height:36px;
+  font-family: Noto Sans CJK KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+`

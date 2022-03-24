@@ -12,12 +12,12 @@ const HeaderNaviUI = ({handleCustom, handleGoodsList, handleFavorite, handleOrde
         	상품 리스트
         </MarketButton>
 
-				<MarketButton onClick={handleOrder}>
-          주문
+				<MarketButton onClick={handleFavorite}>
+          장바구니
         </MarketButton>
 
-        <MyPageButton onClick={handleFavorite}>
-          장바구니?
+        <MyPageButton onClick={handleOrder}>
+          주문하기
         </MyPageButton>
       </HeaderWrapperContainer>
     </Wrapper>

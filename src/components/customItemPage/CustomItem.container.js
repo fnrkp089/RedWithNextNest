@@ -4,11 +4,16 @@ import CustomItemUI from './CustomItem.presenter';
 
 
 const CustomItem = () => {
+  const [widgetSaveBtn, setWidgetSaveBtn] = useState('');
   const router = useRouter();
   const itemName = router.query.id
   const proCode = itemName.split('.');
-  const [isKey, setIsKey] = useState('');
-
+  const [totalCost, setTotalCost] = useState({
+    product: 0,
+    total: 0,
+    vat: 0
+  })
+  
   const config = {
     token: localStorage.getItem('accessToken')
   };
@@ -28,15 +33,47 @@ const CustomItem = () => {
       
       const options = {
         isTemporary: false,
-        customKey: itemName
+        customKey: itemName,
+        onChangePrice: (changePrice => {
+          setTotalCost((prev) => {
+            return {...prev, 
+              product: changePrice.product,
+              total: changePrice.total,
+              vat: changePrice.vat}
+          })
+
+        })
       }
-      const widgetController = await platformSDK.createWidget(config, options)
+      const widgetController = await platformSDK.createWidget(config, options);
+      setWidgetSaveBtn(widgetController)
+      //console.log(widgetSaveBtn)
     }
     widget();
   },[])
 
+  const orderSave = async() => {
+    const response = await widgetSaveBtn.save();
+    console.log(response);
+
+    //주문 위젯 불러오기...
+    // const config = {
+    //   widgetId: '20220324.MEPKDFT.feUgRSEcaMbPQe1R',
+    //   selector: '#red-platform-area',
+      
+    // };
+    
+    // const options = {
+    //   onLoad: ((report) => console.log(report)),
+    //   hide: true
+    // };
+    // await platformSDK.openWidget(config, options);
+  }
+
   return(
-    <CustomItemUI/>
+    <CustomItemUI
+    totalCost = {totalCost}
+    orderSave = {orderSave}/>
+   
   )
 }
 export default CustomItem;
