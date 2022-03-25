@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import { GlobalContext } from '../../../pages/_app'
 import axios from 'axios'
 const CustomSDK = () => {
-  let customSaveButton;
+  const [customSaveButton, setCustomSaveButton] = useState('');
   let customInfo = {} ; 
   const router = useRouter()
   const {accessToken, setAccessToken, refreshToken,setRefreshToken} = useContext(GlobalContext);
@@ -32,7 +32,7 @@ const CustomSDK = () => {
         isTemporary: false
       }
       const builderController =  await platformSDK.createProduct(loc, builderOption);
-      customSaveButton = builderController;
+      setCustomSaveButton(builderController);
     }
     loadBuilder();
   }, []);
@@ -40,7 +40,6 @@ const CustomSDK = () => {
   const customSave = async () => {
     const response = await customSaveButton.save();
     if(response){
-      alert('커스텀 상품이 생성되었습니다');
       fetch('/api/customMethod', {
         method: 'POST',
         body: JSON.stringify(response),
@@ -50,6 +49,7 @@ const CustomSDK = () => {
       })
         .then(response => response.json())
         .then(data => console.log(data))
+        alert('커스텀 상품이 생성되었습니다');
         router.push(`/customList`);
     }
   }

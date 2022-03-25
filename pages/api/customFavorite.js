@@ -26,6 +26,15 @@ export default async function handler(req, res) {
       }
       break
 
+      case 'PUT':
+      try {
+        const favorite = await Favorite.updateOne({widgetId : req.body.widgetId}, req.body)
+        res.status(201).json({ success: '장바구니 데이터 업데이트 성공', data: favorite })
+      } catch (error) {
+        res.status(400).json({ success: '장바구니 업데이트 실패' })
+      }
+      break
+
     default:
       res.status(400).json({ success: false })
       break

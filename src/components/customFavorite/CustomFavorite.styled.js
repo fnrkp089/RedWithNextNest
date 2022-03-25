@@ -76,7 +76,6 @@ align-items: center;
 width: 100%;
 height: 200px;
 border-top: 1px solid;
-cursor: pointer; 
 `
 export const ListItemInnerWrapper = styled.div`
 display: flex;
@@ -134,14 +133,20 @@ overflow: hidden;
 
 export const ItemTag = styled.div`
 width: 100%;
-height:24px;
+height:32px;
 font-style: normal;
 font-weight: 500;
 font-size: 16px;
 line-height: 24px;
-color: #BDBDBD;
+color: #69ABCE;
 `
 
+export const Select = styled.select`
+padding: 16px 32px;
+width: 30px
+outline: none;
+border-radius: 4px;
+`
 export const ItemFooterContainer = styled.div`
 display: flex;
 width: 700px;

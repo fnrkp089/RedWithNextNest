@@ -2,13 +2,13 @@ import {MiddleContainer, Wrapper, SearchCotainer, SellingState,
   NowSelling,
   ListWrapper, ListScrollBar, ListItemWrapper, ListItemInnerWrapper, ListItemdiv, ListImg,
   ListContextContainer, 
-  ItemInformation, ItemHeader, ItemExplain, ItemTag, ItemFooterContainer,
+  ItemInformation, ItemHeader, ItemExplain, ItemTag, Select, ItemFooterContainer,
   ItemSellerImgTextContainer, ItemSellerImgContainer, ItemSellerImg, ItemSeller, 
   ItemRemarkImgTextContainer, ItemRemarkImgContainer, ItemRemarkImg, ItemRemark,
   PriceContainer, PriceImgContainer, PriceImg, PriceText, WriteDiv, WriterButton
  }from './CustomFavorite.styled';
 
-  export default function CustomFavoriteUI () {
+  export default function CustomFavoriteUI ({favoriteData, total, handleOrderChange}) {
     return(
       <MiddleContainer>
         <Wrapper>
@@ -22,53 +22,62 @@ import {MiddleContainer, Wrapper, SearchCotainer, SellingState,
           </SearchCotainer>
 
           <ListScrollBar >
-            <ListWrapper >
-              {/* {data.fetchUseditems.map((list) => (
-                <ListItemWrapper onClick={routeToInfo(list._id)} key={list._id}>
+            <ListWrapper>
+              {favoriteData.data?.map((list) => (
+                <ListItemWrapper key={list.widgetId} >
                 <ListItemInnerWrapper>
                   <ListItemdiv>
                     <ListImg/>
                   </ListItemdiv>
                   <ListContextContainer>
                     <ItemInformation>
-                      <ItemHeader  >{list.name}</ItemHeader>
-                      <ItemExplain dangerouslySetInnerHTML={ {__html: list.contents} }/>
-                      <ItemTag>{list.tags}</ItemTag>
+                      <ItemHeader>{list.productInfo.name}</ItemHeader>
+                      <ItemExplain>사이즈 :{list.summary.sizes.value}</ItemExplain>
+                      <ItemTag>수량: 
+                        <select defaultValue={list.printAmount.value} onChange={handleOrderChange} id={list.widgetId}>
+                          {list.productInfo.options.printAmount.valueInfo.values.map(list => (
+                            <option value={list}>{list}</option>
+                          ))}
+                        </select> 
+                        </ItemTag>
+                      
                     </ItemInformation>
                     <ItemFooterContainer>
 
                       <ItemSellerImgTextContainer>
                       <ItemSellerImgContainer>
-                        <ItemSellerImg src='/guest.png'/>
+                       
                       </ItemSellerImgContainer>
-                      <ItemSeller>{list.seller.name}</ItemSeller>
+                      <ItemSeller>자재: {list.summary.materials.value}</ItemSeller>
                       </ItemSellerImgTextContainer>
 
                       <ItemRemarkImgTextContainer>
                         <ItemRemarkImgContainer>
-                          <ItemRemarkImg src='/yellowHeart.png'/>
+                        
                         </ItemRemarkImgContainer>
-                        <ItemRemark>{list.remarks}</ItemRemark>
+                        <ItemRemark>수량 : {list.summary.printAmount.value}</ItemRemark>
                       </ItemRemarkImgTextContainer>
                     </ItemFooterContainer>
                   </ListContextContainer>
 
                   <PriceContainer>
                         <PriceImgContainer>
-                          <PriceImg src='/price.png'/>
+                         
                         </PriceImgContainer>
                         <PriceText>
-                          {list.price}
+                          {list.priceInfo.total}
                         </PriceText>
                   </PriceContainer>
                 </ListItemInnerWrapper >
               </ListItemWrapper>
-              ))} */}
+              ))}
             </ListWrapper>
           </ListScrollBar>
           <WriteDiv>
+            <PriceText>총 금액: {total}</PriceText>
             <WriterButton>주문하기</WriterButton>
           </WriteDiv>
+          <div id='red-platform-area'></div>
         </Wrapper>
       </MiddleContainer>
     )

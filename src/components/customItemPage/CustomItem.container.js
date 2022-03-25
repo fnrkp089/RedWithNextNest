@@ -52,7 +52,20 @@ const CustomItem = () => {
   },[])
 
   const orderSave = async() => {
-    const response = await widgetSaveBtn.save();
+    const response = await widgetSaveBtn.save(options)
+    if(response){
+      fetch('/api/customFavorite', {
+        method: 'POST',
+        body: JSON.stringify(response),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+      alert('상품이 장바구니에 담겼습니다.')
+      router.push(`/favorite`);
+    }
     console.log(response);
 
     //주문 위젯 불러오기...
